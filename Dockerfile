@@ -11,10 +11,16 @@ ADD log4j2.xml ${OPENFIRE_HOME}/conf/log4j2.xml
 RUN apk update && apk add openjdk11-jre-headless sudo                \
     && wget -O /root/openfire.tar.gz "${OPENFIRE_PACKAGE}"           \
     && tar -C /opt -zxvf /root/openfire.tar.gz                       \
+    && mv ${OPENFIRE_HOME}/plugins ${OPENFIRE_HOME}/plugins-required \
+    && mkdir ${OPENFIRE_HOME}/plugins                                \
     && rm /root/openfire.tar.gz /var/cache/apk/*                     \
     && adduser -h ${OPENFIRE_HOME} -H -D -u 1000 openfire            \
     && chown -R openfire: ${OPENFIRE_HOME}
 
+ADD entrypoint.sh /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
+
+VOLUME ["${OPENFIRE_HOME}/plugins"]
 CMD /usr/bin/sudo -u openfire                                        \
     /usr/bin/java                                                    \
         -server                                                      \
