@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration monitorInterval="30">
+    <Appenders>
+        <Console name="debug-out" target="SYSTEM_OUT">
+            <PatternLayout>
+                <Pattern>%d{yyyy.MM.dd HH:mm:ss} %c - %msg%n</Pattern>
+            </PatternLayout>
+            <Filters>
+                <ThresholdFilter level="DEBUG"/>
+                <ThresholdFilter level="INFO" onMatch="DENY" onMismatch="NEUTRAL"/>
+            </Filters>
+        </Console>
+
+        <Console name="info-out" target="SYSTEM_OUT">
+            <PatternLayout>
+                <Pattern>%d{yyyy.MM.dd HH:mm:ss} %c - %msg%n</Pattern>
+            </PatternLayout>
+            <Filters>
+                <ThresholdFilter level="INFO"/>
+                <ThresholdFilter level="WARN" onMatch="DENY" onMismatch="NEUTRAL"/>
+            </Filters>
+        </Console>
+
+        <Console name="warn-out" target="SYSTEM_ERR">
+            <PatternLayout>
+                <Pattern>%d{yyyy.MM.dd HH:mm:ss} %c - %msg%n</Pattern>
+            </PatternLayout>
+            <Filters>
+                <ThresholdFilter level="WARN"/>
+                <ThresholdFilter level="ERROR" onMatch="DENY" onMismatch="NEUTRAL"/>
+            </Filters>
+        </Console>
+
+        <Console name="error-out" target="SYSTEM_ERR">
+            <PatternLayout>
+                <Pattern>%d{yyyy.MM.dd HH:mm:ss} %c - %msg%n</Pattern>
+            </PatternLayout>
+            <Filters>
+                <ThresholdFilter level="ERROR"/>
+            </Filters>
+        </Console>
+
+        <Console name="all-out" target="SYSTEM_OUT">
+            <PatternLayout>
+                <Pattern>%d{yyyy.MM.dd HH:mm:ss} %-5p [%t]: %c - %msg%n</Pattern>
+            </PatternLayout>
+        </Console>
+
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%msg%n%throwable{0}"/>
+            <Filters>
+                <ThresholdFilter level="INFO"/>
+            </Filters>
+        </Console>
+    </Appenders>
+
+    <Loggers>
+        <!-- OF-1095: Uniform output of loading/unloading of plugins to std-out. -->
+        <Logger name="org.jivesoftware.openfire.container.PluginManager">
+            <AppenderRef ref="console"/>
+        </Logger>
+        <Logger name="org.jivesoftware.openfire.container.PluginMonitor">
+            <AppenderRef ref="console"/>
+        </Logger>
+
+        <!-- OF-506: Jetty INFO messages are generally not useful. Ignore them by default. -->
+        <Logger name="org.eclipse.jetty" level="warn"/>
+
+        <Root level="info">
+            <AppenderRef ref="all-out"/>
+            <AppenderRef ref="debug-out"/>
+            <AppenderRef ref="info-out"/>
+            <AppenderRef ref="warn-out"/>
+            <AppenderRef ref="error-out"/>
+        </Root>
+    </Loggers>
+</Configuration>
