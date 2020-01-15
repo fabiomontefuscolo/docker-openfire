@@ -20,7 +20,7 @@ RUN apk update && apk add openjdk11-jre-headless sudo                \
 ADD entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 
-VOLUME ["${OPENFIRE_HOME}/plugins"]
+VOLUME ["${OPENFIRE_HOME}/plugins/", "${OPENFIRE_HOME}/embedded-db/"]
 CMD /usr/bin/sudo -u openfire                                        \
     /usr/bin/java                                                    \
         -server                                                      \
