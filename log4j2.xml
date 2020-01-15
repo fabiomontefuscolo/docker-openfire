@@ -11,7 +11,7 @@
             </Filters>
         </Console>
 
-        <Console name="info-out" target="SYSTEM_OUT">
+        <Console name="info-out" logStacktrace="false" target="SYSTEM_OUT">
             <PatternLayout>
                 <Pattern>%d{yyyy.MM.dd HH:mm:ss} %c - %msg%n</Pattern>
             </PatternLayout>
@@ -21,7 +21,7 @@
             </Filters>
         </Console>
 
-        <Console name="warn-out" target="SYSTEM_ERR">
+        <Console name="warn-out" logStacktrace="false" target="SYSTEM_ERR">
             <PatternLayout>
                 <Pattern>%d{yyyy.MM.dd HH:mm:ss} %c - %msg%n</Pattern>
             </PatternLayout>
@@ -31,7 +31,7 @@
             </Filters>
         </Console>
 
-        <Console name="error-out" target="SYSTEM_ERR">
+        <Console name="error-out" logStacktrace="false" target="SYSTEM_ERR">
             <PatternLayout>
                 <Pattern>%d{yyyy.MM.dd HH:mm:ss} %c - %msg%n</Pattern>
             </PatternLayout>
@@ -40,13 +40,13 @@
             </Filters>
         </Console>
 
-        <Console name="all-out" target="SYSTEM_OUT">
+        <Console name="all-out" logStacktrace="false" target="SYSTEM_OUT">
             <PatternLayout>
                 <Pattern>%d{yyyy.MM.dd HH:mm:ss} %-5p [%t]: %c - %msg%n</Pattern>
             </PatternLayout>
         </Console>
 
-        <Console name="console" target="SYSTEM_OUT">
+        <Console name="console" logStacktrace="false" target="SYSTEM_OUT">
             <PatternLayout pattern="%msg%n%throwable{0}"/>
             <Filters>
                 <ThresholdFilter level="INFO"/>
