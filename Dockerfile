@@ -5,7 +5,7 @@ ENV OPENFIRE_HOME=/opt/openfire
 ENV JAVA_HOME=/usr/lib/jvm/default-jvm
 EXPOSE 5222 5223 5229 5262 5263 5269 5275 5276 7070 7443 7777 9090 9091
 
-ARG OPENFIRE_PACKAGE=https://github.com/igniterealtime/Openfire/releases/download/v4.5.0/openfire_4_5_0.tar.gz
+ARG OPENFIRE_PACKAGE=https://github.com/igniterealtime/Openfire/releases/download/v4.5.1/openfire_4_5_1.tar.gz
 
 ADD log4j2.xml ${OPENFIRE_HOME}/conf/log4j2.xml
 RUN apk update && apk add openjdk11-jre-headless sudo                \
