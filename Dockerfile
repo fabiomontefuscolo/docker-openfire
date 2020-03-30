@@ -20,13 +20,14 @@ RUN apk update && apk add                                  \
     && mkdir /opt/openfire/conf                            \
     && mkdir /opt/openfire/plugins                         \
     && mkdir /opt/openfire/embedded-db/                    \
+    && mkdir /entrypoint.d/                                \
     && rm -Rf /tmp/openfire.tar.gz /var/cache/apk/*        \
     && adduser -h /opt/openfire -H -D -u 1000 openfire
 
 COPY root/ /
 RUN chown -R openfire:openfire /opt/openfire
 
-VOLUME ["/opt/openfire/plugins/", "/opt/openfire/conf/", "/opt/openfire/embedded-db/"]
+VOLUME ["/entrypoint.d/", "/opt/openfire/plugins/", "/opt/openfire/conf/", "/opt/openfire/embedded-db/"]
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD /usr/bin/sudo -u openfire                                     \
