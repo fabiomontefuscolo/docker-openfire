@@ -12,7 +12,7 @@ IFS='
 '
 if [ -d "/entrypoint.d/" ];
 then
-    for extra in $(find /entrypoint.d/ -type f -name '*.sh');
+    for extra in $(ls -1 '/entrypoint.d/*.sh' 2>&1);
     do
         . "$extra";
     done
